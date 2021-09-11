@@ -1,5 +1,8 @@
+using DAL.WebApi.DbContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,8 +22,11 @@ namespace OpenGlass_WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<OpenGlassDbContext>(dbOption => dbOption.UseSqlServer(@"Data Source=NOUMANMALIK\SQLSERVER;initial catalog = OpenGlass; User ID=sa;Password=123;Connect Timeout=360;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False",
+                dbMigrationOption => dbMigrationOption.MigrationsAssembly("DAL")));
 
             services.AddControllers();
+            
             services.AddSwaggerGen(action =>
             {
                 action.SwaggerDoc("v1", new OpenApiInfo { Title = "OpenGlass-WebApi", Version = "v1" });
