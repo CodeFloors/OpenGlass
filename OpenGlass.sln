@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGlass-Desktop", "OpenGlass-Desktop\OpenGlass-Desktop.csproj", "{71D6CB24-1D27-46DA-9B88-A43EF8ED04D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGlass-WebApi", "OpenGlass-WebApi\OpenGlass-WebApi.csproj", "{E2AF6EFD-1003-46FB-AA99-642BE9CF864F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71D6CB24-1D27-46DA-9B88-A43EF8ED04D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D6CB24-1D27-46DA-9B88-A43EF8ED04D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D6CB24-1D27-46DA-9B88-A43EF8ED04D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D6CB24-1D27-46DA-9B88-A43EF8ED04D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2AF6EFD-1003-46FB-AA99-642BE9CF864F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2AF6EFD-1003-46FB-AA99-642BE9CF864F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2AF6EFD-1003-46FB-AA99-642BE9CF864F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2AF6EFD-1003-46FB-AA99-642BE9CF864F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3892BEF8-F4F1-4621-87FD-A57C7862A7ED}
+	EndGlobalSection
+EndGlobal
