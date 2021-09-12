@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Data;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace OpenGlass_Desktop
@@ -14,65 +14,74 @@ namespace OpenGlass_Desktop
         private void Login_Load(object sender, EventArgs e)
         {
             lblError.Text = string.Empty;
-            RegistryKey readRememberMe = Registry.CurrentUser.OpenSubKey(@"Software\Remember");
+            RegistryKey readRememberMe = Registry.CurrentUser.OpenSubKey(@"Software\OpenGlass\Remember");
             if (readRememberMe != null)
             {
-                TxtUsername.Text = readRememberMe.GetValue("UN").ToString();
+                TxtEmail.Text = readRememberMe.GetValue("UN").ToString();
+                readRememberMe.Close();
                 TxtPassword.Select();
                 chkRememberMe.Checked = true;
-                readRememberMe.Close();
             }
         }
 
         private void ClearInputs()
         {
-            TxtUsername.Text = string.Empty;
+            TxtEmail.Text = string.Empty;
             TxtPassword.Text = string.Empty;
         }
         private void BtnLogin_Click(object sender, EventArgs e)
         {
+            // setup remember user email
             if (chkRememberMe.Checked)
             {
-                Registry.CurrentUser.DeleteSubKey(@"Software\Remember", false);
-                RegistryKey writeRememberMe = Registry.CurrentUser.CreateSubKey(@"Software\Remember");
-                writeRememberMe.SetValue("UN", TxtUsername.Text);
+                Registry.CurrentUser.DeleteSubKey(@"Software\OpenGlass\Remember", false);
+                RegistryKey writeRememberMe = Registry.CurrentUser.CreateSubKey(@"Software\OpenGlass\Remember");
+                writeRememberMe.SetValue("UN", TxtEmail.Text);
                 writeRememberMe.Close();
             }
             else
             {
                 Registry.CurrentUser.DeleteSubKey(@"Software\Remember", false);
             }
+
+            if (ValidateInputs())
+            {
+
+            }
         }
 
-        private void IsInputFieldsValidate()
+        private bool IsValidEmail()
         {
-
+            return Regex.Match(TxtEmail.Text, @"^\w+\@\w+\.[a-zA-Z]+$").Success;
         }
 
-        private void IsIdentified()
+        private bool ValidateInputs()
         {
-
-        }
-
-        private void DesignSetup()
-        {
-
+            if (string.IsNullOrEmpty(TxtEmail.Text) && string.IsNullOrWhiteSpace(TxtEmail.Text))
+            {
+                lblError.Text = "Email is Required !!";
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TxtPassword.Text) && string.IsNullOrWhiteSpace(TxtPassword.Text))
+            {
+                lblError.Text = "Password is Required !!";
+                return false;
+            }
+            else if (!IsValidEmail())
+            {
+                lblError.Text = "\t\tInvalid Email !!";
+                return false;
+            }
+            else
+            {
+                lblError.Text = string.Empty;
+                return true;
+            }
         }
 
         private void BtnCloseApplication_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void KeyStrokeValidate(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 'a' && e.KeyChar <= 'z') ||
-               (e.KeyChar >= 'A' && e.KeyChar <= 'Z') ||
-               (e.KeyChar >= '0' && e.KeyChar <= '9') ||
-               e.KeyChar == (char)Keys.Back)
-                e.Handled = false;
-            else
-                e.Handled = true;
         }
 
         private void LonginOnPressEnter(object sender, KeyEventArgs e)
