@@ -1,7 +1,11 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Net.Http;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace OpenGlass_Desktop
 {
@@ -29,7 +33,7 @@ namespace OpenGlass_Desktop
             TxtEmail.Text = string.Empty;
             TxtPassword.Text = string.Empty;
         }
-        private void BtnLogin_Click(object sender, EventArgs e)
+        private async void BtnLogin_ClickAsync(object sender, EventArgs e)
         {
             // setup remember user email
             if (chkRememberMe.Checked)
@@ -43,10 +47,17 @@ namespace OpenGlass_Desktop
             {
                 Registry.CurrentUser.DeleteSubKey(@"Software\Remember", false);
             }
+            
+            var httpResponseMessage=await new HttpClient().SendAsync(new HttpRequestMessage()
+            {
+                RequestUri = new Uri("http://localhost:2500/accounts/login"),
+                Method = HttpMethod.Post,
+                Content = new StringContent(JsonConvert.SerializeObject(new { email = "abc@abc.com", password = "123" }), Encoding.UTF8, "application/json")
+            });
 
             if (ValidateInputs())
             {
-
+                
             }
         }
 
@@ -88,7 +99,7 @@ namespace OpenGlass_Desktop
         {
             if (e.KeyCode == Keys.Enter)
             {
-                BtnLogin_Click(sender, e);
+                BtnLogin_ClickAsync(sender, e);
             }
         }
     }
