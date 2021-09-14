@@ -22,8 +22,19 @@ namespace OpenGlass_WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<OpenGlassDbContext>(dbOption => dbOption.UseSqlServer(@"Data Source=NOUMANMALIK\SQLSERVER;initial catalog = OpenGlass; User ID=sa;Password=123;Connect Timeout=360;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False",
+            services.AddDbContext<OpenGlassDbContext>(dbOption => dbOption.UseSqlServer(Configuration.GetConnectionString("default"),
                 dbMigrationOption => dbMigrationOption.MigrationsAssembly("DAL")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                // Configure identity options here.
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            }
+            ).AddEntityFrameworkStores<OpenGlassDbContext>();
 
             services.AddControllers();
             
@@ -39,7 +50,7 @@ namespace OpenGlass_WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger(action => action.SerializeAsV2 = true);
+                app.UseSwagger();
                 app.UseSwaggerUI(action =>
                 {
                     action.SwaggerEndpoint("/swagger/v1/swagger.json", "OpenGlass-WebApi");
@@ -47,7 +58,8 @@ namespace OpenGlass_WebApi
             }
 
             app.UseRouting();
-
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
