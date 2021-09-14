@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.TxtUsername = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.TxtEmail = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.TxtPassword = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.chkRememberMe = new Bunifu.Framework.UI.BunifuCheckbox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,30 +43,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.picUserLoginImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // TxtUsername
+            // TxtEmail
             // 
-            this.TxtUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.TxtUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtUsername.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.TxtUsername.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TxtUsername.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.TxtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.TxtUsername.HintForeColor = System.Drawing.Color.Empty;
-            this.TxtUsername.HintText = "";
-            this.TxtUsername.isPassword = false;
-            this.TxtUsername.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(81)))), ((int)(((byte)(109)))));
-            this.TxtUsername.LineIdleColor = System.Drawing.Color.Gray;
-            this.TxtUsername.LineMouseHoverColor = System.Drawing.Color.Gray;
-            this.TxtUsername.LineThickness = 3;
-            this.TxtUsername.Location = new System.Drawing.Point(254, 32);
-            this.TxtUsername.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtUsername.MaxLength = 32767;
-            this.TxtUsername.Name = "TxtUsername";
-            this.TxtUsername.Size = new System.Drawing.Size(186, 30);
-            this.TxtUsername.TabIndex = 2;
-            this.TxtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtUsername.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyStrokeValidate);
-            this.TxtUsername.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LonginOnPressEnter);
+            this.TxtEmail.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.TxtEmail.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.TxtEmail.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.TxtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TxtEmail.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.TxtEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TxtEmail.HintForeColor = System.Drawing.Color.Empty;
+            this.TxtEmail.HintText = "";
+            this.TxtEmail.isPassword = false;
+            this.TxtEmail.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(81)))), ((int)(((byte)(109)))));
+            this.TxtEmail.LineIdleColor = System.Drawing.Color.Gray;
+            this.TxtEmail.LineMouseHoverColor = System.Drawing.Color.Gray;
+            this.TxtEmail.LineThickness = 3;
+            this.TxtEmail.Location = new System.Drawing.Point(254, 32);
+            this.TxtEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtEmail.MaxLength = 32767;
+            this.TxtEmail.Name = "TxtEmail";
+            this.TxtEmail.Size = new System.Drawing.Size(186, 30);
+            this.TxtEmail.TabIndex = 2;
+            this.TxtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtEmail.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LonginOnPressEnter);
             // 
             // TxtPassword
             // 
@@ -91,7 +89,6 @@
             this.TxtPassword.Size = new System.Drawing.Size(186, 30);
             this.TxtPassword.TabIndex = 3;
             this.TxtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyStrokeValidate);
             this.TxtPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LonginOnPressEnter);
             // 
             // chkRememberMe
@@ -120,11 +117,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 10.75F);
-            this.label2.Location = new System.Drawing.Point(166, 45);
+            this.label2.Location = new System.Drawing.Point(184, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 20);
+            this.label2.Size = new System.Drawing.Size(46, 20);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Username";
+            this.label2.Text = "Email";
             // 
             // label3
             // 
@@ -140,12 +137,12 @@
             // 
             this.lblError.AutoSize = true;
             this.lblError.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.lblError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(110)))), ((int)(((byte)(64)))));
-            this.lblError.Location = new System.Drawing.Point(207, 167);
+            this.lblError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblError.Location = new System.Drawing.Point(217, 167);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(200, 17);
+            this.lblError.Size = new System.Drawing.Size(172, 17);
             this.lblError.TabIndex = 5;
-            this.lblError.Text = "Invalid Username or Password";
+            this.lblError.Text = "Invalid Email or Password";
             this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // picUserLoginImage
@@ -252,9 +249,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chkRememberMe);
             this.Controls.Add(this.TxtPassword);
-            this.Controls.Add(this.TxtUsername);
+            this.Controls.Add(this.TxtEmail);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Login_Load);
@@ -266,7 +262,7 @@
 
         #endregion
 
-        private Bunifu.Framework.UI.BunifuMaterialTextbox TxtUsername;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox TxtEmail;
         private Bunifu.Framework.UI.BunifuMaterialTextbox TxtPassword;
         private Bunifu.Framework.UI.BunifuCheckbox chkRememberMe;
         private System.Windows.Forms.Label label1;
