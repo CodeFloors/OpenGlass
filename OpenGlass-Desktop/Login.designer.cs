@@ -227,7 +227,7 @@
             this.BtnLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.BtnLogin.Textcolor = System.Drawing.Color.White;
             this.BtnLogin.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
+            this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_ClickAsync);
             // 
             // bunifuElipse1
             // 
