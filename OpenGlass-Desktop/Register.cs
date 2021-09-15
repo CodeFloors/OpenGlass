@@ -1,6 +1,10 @@
-﻿using System.Drawing;
+﻿using Newtonsoft.Json;
+using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Net.Http;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -8,20 +12,43 @@ namespace OpenGlass_Desktop
 {
     public partial class Register : Form
     {
-        private byte[] imageByteArray;
-        public Register()
+        private byte[] _imageByteArray;
+        private readonly string _url;
+        public Register(string url)
         {
-            imageByteArray = new byte[] { };
+            this._url = url;
+            _imageByteArray = new byte[] { };
             InitializeComponent();
         }
 
-        private void BtnRegister_Click(object sender, System.EventArgs e)
+        private async void BtnRegister_ClickAsync(object sender, System.EventArgs e)
         {
             if (ValidateInputs())
             {
-
+                try
+                {
+                    var httpResponseMessage = await new HttpClient().SendAsync(new HttpRequestMessage()
+                    {
+                        RequestUri = new Uri($"http://{_url}/accounts/register"),
+                        Method = HttpMethod.Post,
+                        Content = new StringContent(JsonConvert.SerializeObject(new
+                        {
+                            email = TxtRegEmail.Text,
+                            password = TxtRegPassword.Text,
+                            ConfirmPassword = TxtRegPasswordConfirm.Text
+                        }), Encoding.UTF8, "application/json")
+                    });
+                    if (httpResponseMessage.IsSuccessStatusCode)
+                    {
+                        lblError.ForeColor = Color.Green;
+                        lblError.Text = "Account Created Successfully";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-
         }
 
         private bool ValidateInputs()
@@ -93,9 +120,25 @@ namespace OpenGlass_Desktop
                     PbUserRegister.Image = bitmap;
                     MemoryStream memoryStream = new MemoryStream();
                     bitmap.Save(memoryStream, ImageFormat.Jpeg);
-                    imageByteArray = memoryStream.ToArray();
+                    _imageByteArray = memoryStream.ToArray();
                 }
             }
+        }
+
+        private void lblBackToLogin_Click(object sender, System.EventArgs e)
+        {
+            new Login().Show();
+            this.Hide();
+        }
+
+        private void lblBackToLogin_MouseEnter(object sender, EventArgs e)
+        {
+            lblBackToLogin.ForeColor = Color.FromArgb(64, 64, 64);
+        }
+
+        private void lblBackToLogin_MouseLeave(object sender, EventArgs e)
+        {
+            lblBackToLogin.ForeColor = Color.Gray;
         }
     }
 }

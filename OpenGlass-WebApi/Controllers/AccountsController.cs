@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Object.DTOs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace OpenGlass_WebApi.Controllers
@@ -37,7 +34,7 @@ namespace OpenGlass_WebApi.Controllers
                 {
                     return Ok(loginDto);
                 }
-                return BadRequest(new { Error = "Invalid Login Attempt" });
+                return NotFound(new { Error = "Invalid Login Attempt" });
             }
             return BadRequest();
         }
@@ -58,19 +55,23 @@ namespace OpenGlass_WebApi.Controllers
                 try
                 {
                     IdentityUser identityUser = null;
-                
-                // check duplication
-                    identityUser = await _userManager.FindByEmailAsync(model.Email);
-                
-                if (identityUser is null)
-                {
-                    var result = await _userManager.CreateAsync(user, model.Password);
 
-                    if (result.Succeeded)
+                    // check duplication
+                    identityUser = await _userManager.FindByEmailAsync(model.Email);
+
+                    if (identityUser is null)
                     {
-                        return Ok(model);
+                        var result = await _userManager.CreateAsync(user, model.Password);
+
+                        if (result.Succeeded)
+                        {
+                            return Ok(model);
+                        }
                     }
-                }
+                    else
+                    {
+                        return Conflict(new { Error = "user already exists", model });
+                    }
                 }
                 catch (Exception ex)
                 {

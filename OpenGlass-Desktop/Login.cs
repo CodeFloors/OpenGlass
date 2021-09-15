@@ -1,11 +1,11 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
+using System.Drawing;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
 
 namespace OpenGlass_Desktop
 {
@@ -17,7 +17,8 @@ namespace OpenGlass_Desktop
         }
         private void Login_Load(object sender, EventArgs e)
         {
-            lblError.Text = string.Empty;
+            ClearInputs();
+
             RegistryKey readRememberMe = Registry.CurrentUser.OpenSubKey(@"Software\OpenGlass\Remember");
             if (readRememberMe != null)
             {
@@ -30,34 +31,57 @@ namespace OpenGlass_Desktop
 
         private void ClearInputs()
         {
+            lblError.Text = string.Empty;
+            lblError.ForeColor = Color.Red;
+
+            chkRememberMe.Checked = true;
+
             TxtEmail.Text = string.Empty;
             TxtPassword.Text = string.Empty;
         }
         private async void BtnLogin_ClickAsync(object sender, EventArgs e)
         {
-            // setup remember user email
-            if (chkRememberMe.Checked)
-            {
-                Registry.CurrentUser.DeleteSubKey(@"Software\OpenGlass\Remember", false);
-                RegistryKey writeRememberMe = Registry.CurrentUser.CreateSubKey(@"Software\OpenGlass\Remember");
-                writeRememberMe.SetValue("UN", TxtEmail.Text);
-                writeRememberMe.Close();
-            }
-            else
-            {
-                Registry.CurrentUser.DeleteSubKey(@"Software\Remember", false);
-            }
-            
-            var httpResponseMessage=await new HttpClient().SendAsync(new HttpRequestMessage()
-            {
-                RequestUri = new Uri("http://localhost:2500/accounts/login"),
-                Method = HttpMethod.Post,
-                Content = new StringContent(JsonConvert.SerializeObject(new { email = "abc@abc.com", password = "123" }), Encoding.UTF8, "application/json")
-            });
 
-            if (ValidateInputs())
+            if (ValidateUrl())
             {
-                
+                // setup remember user email
+                if (chkRememberMe.Checked)
+                {
+                    Registry.CurrentUser.DeleteSubKey(@"Software\OpenGlass\Remember", false);
+                    RegistryKey writeRememberMe = Registry.CurrentUser.CreateSubKey(@"Software\OpenGlass\Remember");
+                    writeRememberMe.SetValue("UN", TxtEmail.Text);
+                    writeRememberMe.Close();
+                }
+                else
+                {
+                    Registry.CurrentUser.DeleteSubKey(@"Software\Remember", false);
+                }
+
+                if (ValidateInputs())
+                {
+                    try
+                    {
+                        var httpResponseMessage = await new HttpClient().SendAsync(new HttpRequestMessage()
+                        {
+                            RequestUri = new Uri($"http://{TxtUrl.Text}/accounts/login"),
+                            Method = HttpMethod.Post,
+                            Content = new StringContent(JsonConvert.SerializeObject(new
+                            {
+                                email = TxtEmail.Text,
+                                password = TxtPassword.Text
+                            }), Encoding.UTF8, "application/json")
+                        });
+                        if (httpResponseMessage.IsSuccessStatusCode)
+                        {
+                            lblError.ForeColor = Color.Green;
+                            lblError.Text = "You are Successfully Login !!";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
             }
         }
 
@@ -101,6 +125,37 @@ namespace OpenGlass_Desktop
             {
                 BtnLogin_ClickAsync(sender, e);
             }
+        }
+
+        private void lblCreateNewAccount_Click(object sender, EventArgs e)
+        {
+            if (ValidateUrl())
+            {
+                new Register(TxtUrl.Text).Show();
+                this.Hide();
+            }
+
+        }
+
+        private bool ValidateUrl()
+        {
+
+            if (string.IsNullOrEmpty(TxtUrl.Text) && string.IsNullOrWhiteSpace(TxtUrl.Text))
+            {
+                lblError.Text = "Please Enter Url of API";
+                return false;
+            }
+            return true;
+        }
+
+        private void lblCreateNewAccount_MouseEnter(object sender, EventArgs e)
+        {
+            lblCreateNewAccount.ForeColor = Color.FromArgb(64, 64, 64);
+        }
+
+        private void lblCreateNewAccount_MouseLeave(object sender, EventArgs e)
+        {
+            lblCreateNewAccount.ForeColor = Color.Gray;
         }
     }
 }

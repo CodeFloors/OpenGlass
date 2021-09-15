@@ -43,6 +43,7 @@
             this.lblErrorEmail = new System.Windows.Forms.Label();
             this.lblErrorPassword = new System.Windows.Forms.Label();
             this.lblErrorConfirmPassword = new System.Windows.Forms.Label();
+            this.lblError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PbUserRegister)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             this.TxtRegEmail.LineIdleColor = System.Drawing.Color.Gray;
             this.TxtRegEmail.LineMouseHoverColor = System.Drawing.Color.Gray;
             this.TxtRegEmail.LineThickness = 3;
-            this.TxtRegEmail.Location = new System.Drawing.Point(140, 171);
+            this.TxtRegEmail.Location = new System.Drawing.Point(135, 171);
             this.TxtRegEmail.Margin = new System.Windows.Forms.Padding(4);
             this.TxtRegEmail.MaxLength = 32767;
             this.TxtRegEmail.Name = "TxtRegEmail";
@@ -84,7 +85,7 @@
             this.TxtRegPasswordConfirm.LineIdleColor = System.Drawing.Color.Gray;
             this.TxtRegPasswordConfirm.LineMouseHoverColor = System.Drawing.Color.Gray;
             this.TxtRegPasswordConfirm.LineThickness = 3;
-            this.TxtRegPasswordConfirm.Location = new System.Drawing.Point(140, 249);
+            this.TxtRegPasswordConfirm.Location = new System.Drawing.Point(135, 249);
             this.TxtRegPasswordConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.TxtRegPasswordConfirm.MaxLength = 32767;
             this.TxtRegPasswordConfirm.Name = "TxtRegPasswordConfirm";
@@ -96,7 +97,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 10.75F);
-            this.label2.Location = new System.Drawing.Point(83, 176);
+            this.label2.Location = new System.Drawing.Point(78, 176);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 20);
             this.label2.TabIndex = 5;
@@ -106,7 +107,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 10.75F);
-            this.label3.Location = new System.Drawing.Point(63, 254);
+            this.label3.Location = new System.Drawing.Point(58, 254);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 20);
             this.label3.TabIndex = 5;
@@ -123,6 +124,9 @@
             this.lblBackToLogin.TabIndex = 5;
             this.lblBackToLogin.Text = "Back To Login";
             this.lblBackToLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblBackToLogin.Click += new System.EventHandler(this.lblBackToLogin_Click);
+            this.lblBackToLogin.MouseEnter += new System.EventHandler(this.lblBackToLogin_MouseEnter);
+            this.lblBackToLogin.MouseLeave += new System.EventHandler(this.lblBackToLogin_MouseLeave);
             // 
             // PbUserRegister
             // 
@@ -159,7 +163,7 @@
             this.BtnRegister.IconVisible = false;
             this.BtnRegister.IconZoom = 90D;
             this.BtnRegister.IsTab = false;
-            this.BtnRegister.Location = new System.Drawing.Point(148, 303);
+            this.BtnRegister.Location = new System.Drawing.Point(148, 309);
             this.BtnRegister.Name = "BtnRegister";
             this.BtnRegister.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(61)))), ((int)(((byte)(89)))));
             this.BtnRegister.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(51)))), ((int)(((byte)(79)))));
@@ -171,7 +175,7 @@
             this.BtnRegister.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.BtnRegister.Textcolor = System.Drawing.Color.White;
             this.BtnRegister.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
+            this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_ClickAsync);
             // 
             // bunifuElipse1
             // 
@@ -193,7 +197,7 @@
             this.TxtRegPassword.LineIdleColor = System.Drawing.Color.Gray;
             this.TxtRegPassword.LineMouseHoverColor = System.Drawing.Color.Gray;
             this.TxtRegPassword.LineThickness = 3;
-            this.TxtRegPassword.Location = new System.Drawing.Point(140, 209);
+            this.TxtRegPassword.Location = new System.Drawing.Point(135, 209);
             this.TxtRegPassword.Margin = new System.Windows.Forms.Padding(4);
             this.TxtRegPassword.MaxLength = 32767;
             this.TxtRegPassword.Name = "TxtRegPassword";
@@ -205,7 +209,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 10.75F);
-            this.label1.Location = new System.Drawing.Point(50, 214);
+            this.label1.Location = new System.Drawing.Point(45, 214);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 5;
@@ -220,7 +224,7 @@
             this.lblErrorEmail.AutoSize = true;
             this.lblErrorEmail.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.lblErrorEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblErrorEmail.Location = new System.Drawing.Point(333, 184);
+            this.lblErrorEmail.Location = new System.Drawing.Point(328, 184);
             this.lblErrorEmail.Name = "lblErrorEmail";
             this.lblErrorEmail.Size = new System.Drawing.Size(65, 17);
             this.lblErrorEmail.TabIndex = 9;
@@ -233,7 +237,7 @@
             this.lblErrorPassword.AutoSize = true;
             this.lblErrorPassword.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.lblErrorPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblErrorPassword.Location = new System.Drawing.Point(333, 222);
+            this.lblErrorPassword.Location = new System.Drawing.Point(328, 222);
             this.lblErrorPassword.Name = "lblErrorPassword";
             this.lblErrorPassword.Size = new System.Drawing.Size(65, 17);
             this.lblErrorPassword.TabIndex = 9;
@@ -246,7 +250,7 @@
             this.lblErrorConfirmPassword.AutoSize = true;
             this.lblErrorConfirmPassword.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.lblErrorConfirmPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblErrorConfirmPassword.Location = new System.Drawing.Point(333, 262);
+            this.lblErrorConfirmPassword.Location = new System.Drawing.Point(328, 262);
             this.lblErrorConfirmPassword.Name = "lblErrorConfirmPassword";
             this.lblErrorConfirmPassword.Size = new System.Drawing.Size(79, 17);
             this.lblErrorConfirmPassword.TabIndex = 9;
@@ -254,12 +258,24 @@
             this.lblErrorConfirmPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblErrorConfirmPassword.Visible = false;
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.lblError.ForeColor = System.Drawing.Color.Green;
+            this.lblError.Location = new System.Drawing.Point(119, 285);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 17);
+            this.lblError.TabIndex = 9;
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(240)))), ((int)(((byte)(225)))));
             this.ClientSize = new System.Drawing.Size(420, 402);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblErrorConfirmPassword);
             this.Controls.Add(this.lblErrorPassword);
             this.Controls.Add(this.lblErrorEmail);
@@ -297,5 +313,6 @@
         private System.Windows.Forms.Label lblErrorConfirmPassword;
         private System.Windows.Forms.Label lblErrorPassword;
         private System.Windows.Forms.Label lblErrorEmail;
+        private System.Windows.Forms.Label lblError;
     }
 }
