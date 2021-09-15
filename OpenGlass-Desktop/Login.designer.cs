@@ -40,6 +40,9 @@
             this.BtnCloseApplication = new Bunifu.Framework.UI.BunifuFlatButton();
             this.BtnLogin = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.TxtUrl = new Bunifu.Framework.UI.BunifuMetroTextbox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblCreateNewAccount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picUserLoginImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +61,7 @@
             this.TxtEmail.LineIdleColor = System.Drawing.Color.Gray;
             this.TxtEmail.LineMouseHoverColor = System.Drawing.Color.Gray;
             this.TxtEmail.LineThickness = 3;
-            this.TxtEmail.Location = new System.Drawing.Point(254, 32);
+            this.TxtEmail.Location = new System.Drawing.Point(254, 47);
             this.TxtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.TxtEmail.MaxLength = 32767;
             this.TxtEmail.Name = "TxtEmail";
@@ -82,7 +85,7 @@
             this.TxtPassword.LineIdleColor = System.Drawing.Color.Gray;
             this.TxtPassword.LineMouseHoverColor = System.Drawing.Color.Gray;
             this.TxtPassword.LineThickness = 3;
-            this.TxtPassword.Location = new System.Drawing.Point(254, 81);
+            this.TxtPassword.Location = new System.Drawing.Point(254, 85);
             this.TxtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.TxtPassword.MaxLength = 32767;
             this.TxtPassword.Name = "TxtPassword";
@@ -98,7 +101,7 @@
             this.chkRememberMe.Checked = false;
             this.chkRememberMe.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(61)))), ((int)(((byte)(89)))));
             this.chkRememberMe.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.chkRememberMe.Location = new System.Drawing.Point(254, 118);
+            this.chkRememberMe.Location = new System.Drawing.Point(254, 127);
             this.chkRememberMe.Name = "chkRememberMe";
             this.chkRememberMe.Size = new System.Drawing.Size(20, 20);
             this.chkRememberMe.TabIndex = 4;
@@ -107,7 +110,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.label1.Location = new System.Drawing.Point(281, 120);
+            this.label1.Location = new System.Drawing.Point(281, 129);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 17);
             this.label1.TabIndex = 5;
@@ -117,7 +120,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 10.75F);
-            this.label2.Location = new System.Drawing.Point(184, 45);
+            this.label2.Location = new System.Drawing.Point(184, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 20);
             this.label2.TabIndex = 5;
@@ -127,7 +130,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 10.75F);
-            this.label3.Location = new System.Drawing.Point(168, 94);
+            this.label3.Location = new System.Drawing.Point(168, 98);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 20);
             this.label3.TabIndex = 5;
@@ -138,7 +141,7 @@
             this.lblError.AutoSize = true;
             this.lblError.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.lblError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblError.Location = new System.Drawing.Point(217, 167);
+            this.lblError.Location = new System.Drawing.Point(217, 165);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(172, 17);
             this.lblError.TabIndex = 5;
@@ -179,7 +182,7 @@
             this.BtnCloseApplication.IconVisible = false;
             this.BtnCloseApplication.IconZoom = 90D;
             this.BtnCloseApplication.IsTab = false;
-            this.BtnCloseApplication.Location = new System.Drawing.Point(317, 196);
+            this.BtnCloseApplication.Location = new System.Drawing.Point(317, 194);
             this.BtnCloseApplication.Name = "BtnCloseApplication";
             this.BtnCloseApplication.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(61)))), ((int)(((byte)(89)))));
             this.BtnCloseApplication.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(51)))), ((int)(((byte)(79)))));
@@ -215,7 +218,7 @@
             this.BtnLogin.IconVisible = false;
             this.BtnLogin.IconZoom = 90D;
             this.BtnLogin.IsTab = false;
-            this.BtnLogin.Location = new System.Drawing.Point(171, 196);
+            this.BtnLogin.Location = new System.Drawing.Point(171, 194);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(61)))), ((int)(((byte)(89)))));
             this.BtnLogin.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(51)))), ((int)(((byte)(79)))));
@@ -234,16 +237,63 @@
             this.bunifuElipse1.ElipseRadius = 15;
             this.bunifuElipse1.TargetControl = this;
             // 
+            // TxtUrl
+            // 
+            this.TxtUrl.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TxtUrl.BorderColorIdle = System.Drawing.Color.Gray;
+            this.TxtUrl.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TxtUrl.BorderThickness = 3;
+            this.TxtUrl.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.TxtUrl.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TxtUrl.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.TxtUrl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TxtUrl.isPassword = false;
+            this.TxtUrl.Location = new System.Drawing.Point(85, 9);
+            this.TxtUrl.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtUrl.MaxLength = 32767;
+            this.TxtUrl.Name = "TxtUrl";
+            this.TxtUrl.Size = new System.Drawing.Size(371, 32);
+            this.TxtUrl.TabIndex = 8;
+            this.TxtUrl.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.label4.Location = new System.Drawing.Point(18, 15);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 19);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Domain";
+            // 
+            // lblCreateNewAccount
+            // 
+            this.lblCreateNewAccount.AutoSize = true;
+            this.lblCreateNewAccount.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.lblCreateNewAccount.ForeColor = System.Drawing.Color.Gray;
+            this.lblCreateNewAccount.Location = new System.Drawing.Point(239, 250);
+            this.lblCreateNewAccount.Name = "lblCreateNewAccount";
+            this.lblCreateNewAccount.Size = new System.Drawing.Size(146, 17);
+            this.lblCreateNewAccount.TabIndex = 9;
+            this.lblCreateNewAccount.Text = "Create New Account";
+            this.lblCreateNewAccount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCreateNewAccount.Click += new System.EventHandler(this.lblCreateNewAccount_Click);
+            this.lblCreateNewAccount.MouseEnter += new System.EventHandler(this.lblCreateNewAccount_MouseEnter);
+            this.lblCreateNewAccount.MouseLeave += new System.EventHandler(this.lblCreateNewAccount_MouseLeave);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(240)))), ((int)(((byte)(225)))));
-            this.ClientSize = new System.Drawing.Size(469, 263);
+            this.ClientSize = new System.Drawing.Size(469, 284);
+            this.Controls.Add(this.lblCreateNewAccount);
+            this.Controls.Add(this.TxtUrl);
             this.Controls.Add(this.picUserLoginImage);
             this.Controls.Add(this.BtnCloseApplication);
             this.Controls.Add(this.BtnLogin);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.label1);
@@ -273,5 +323,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblError;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
+        private Bunifu.Framework.UI.BunifuMetroTextbox TxtUrl;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblCreateNewAccount;
     }
 }
